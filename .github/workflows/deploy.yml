@@ -36,15 +36,14 @@ jobs:
           yarn build
 
       - name: deploy
-        uses: AEnterprise/rsync-deploy@v1.0
+        uses: SamKirkland/FTP-Deploy-Action@4.1.0
         env:
-          FOLDER: dist
-          ARGS: "-e -c -r --delete"
-          DEPLOY_KEY: ${{ secrets.UBANTU }}
-          SERVER_PORT: '22'
-          SERVER_IP: ${{ secrets.SSH_HOST }}
-          USERNAME: ${{ secrets.USERNAME }}
-          SERVER_DESTINATION: /project/p3/
+          server: ${{ secrets.SSH_HOST }}
+          username: ${{ secrets.SSH_USERNAME }}
+          password: ${{ secrets.SSH_PASSWORD }}
+          port: 21
+          local-dir: ./dist/
+          server-dir: /project/p3/
 
 #          accessKeyId: ${{ secrets.ACCESSKEYID }}
 #          accessKeySecret: ${{ secrets.ACCESSKEYSECRET }}
