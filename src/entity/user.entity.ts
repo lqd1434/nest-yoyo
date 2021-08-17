@@ -1,9 +1,9 @@
-import { BaseEntity, Column, Entity, PrimaryGeneratedColumn } from 'typeorm'
+import { BaseEntity, Column, CreateDateColumn, Entity, PrimaryGeneratedColumn, UpdateDateColumn } from 'typeorm'
 
 @Entity({ name: 'users' })
 export class User extends BaseEntity {
 	@PrimaryGeneratedColumn()
-	id: number
+	id?: number
 
 	@Column({ type: 'varchar', name: 'name' })
 	name: string
@@ -20,12 +20,18 @@ export class User extends BaseEntity {
 	@Column({ type: 'varchar', name: 'gender' })
 	gender: string
 
+	@Column({ type: 'varchar', name: 'birth' })
+	birth: string
+
+	@Column({ type: 'varchar', name: 'sign' })
+	sign: string
+
 	@Column({ type: 'varchar', name: 'icon' })
 	icon: string
 
-	@Column({ type: 'timestamp', name: 'created_at' })
-	created_at: string
+	@CreateDateColumn({ type: 'timestamp', name: 'created_at' })
+	created_at?: string
 
-	@Column({ type: 'timestamp', name: 'updated_at' })
-	updated_at: string
+	@UpdateDateColumn({ type: 'timestamp', name: 'updated_at' })
+	updated_at?: string
 }

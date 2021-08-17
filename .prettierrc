@@ -5,7 +5,7 @@
   "useTabs": true,
   "singleQuote": true,
   "endOfLine": "auto",
-  "printWidth": 180,
+  "printWidth": 120,
   "TrailingCooma": "none",
   "bracketSpacing": true
 }

@@ -11,7 +11,7 @@ export class ChatService {
 		let userList: ResponseUserInfo[] = []
 		for (const item of userIdList) {
 			const user = await this.userService.selectUserById(item)
-			const userInfo: any = { id: user.id, name: user.name }
+			const userInfo: any = { id: user.id, name: user.name,icon:user.icon }
 			userList.push(userInfo)
 		}
 		return userList

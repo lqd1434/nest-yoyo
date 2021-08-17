@@ -11,7 +11,7 @@ export class MyRedisService {
 	}
 
 	private async getClient() {
-		this.client = this.redisService.getClient()
+		this.client = this.redisService.getClient('redis1')
 	}
 
 	public async set(key: string, value: any, seconds?: number): Promise<any> {
@@ -31,7 +31,6 @@ export class MyRedisService {
 			await this.getClient()
 		}
 		let data = await this.client.get(key)
-		console.log('data', data)
 		if (data) {
 			return JSON.parse(data)
 		} else {
@@ -45,11 +44,21 @@ export class MyRedisService {
 		await this.client.del(key)
 	}
 
-	public async getAllKey() {
+	public async getAllKey(): Promise<string[]> {
 		if (!this.client) {
 			await this.getClient()
 		}
-		const count = await this.client.keys('*')
-		return count
+		let res = 0
+		let list = []
+		while (true) {
+			const r = await this.client.scan(res, 'count', 100)
+			res = parseInt(r[0])
+			list = [...list, ...r[1]]
+			if (res === 0) {
+				break
+			}
+		}
+		list = Array.from(new Set(list))
+		return list
 	}
 }
