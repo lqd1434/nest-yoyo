@@ -33,7 +33,7 @@ jobs:
           echo install dependencies
           yarn
           echo build project
-          nest build
+          yarn build
 
       - name: deploy
         uses: fangbinwei/aliyun-oss-website-action@v1
