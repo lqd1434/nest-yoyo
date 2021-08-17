@@ -36,7 +36,7 @@ jobs:
           yarn build
 
       - name: deploy
-        uses: fangbinwei/aliyun-oss-website-action@v1
+        uses: AEnterprise/rsync-deploy@v1.0
         with:
           folder: dist
           deploy_key: ${{ secrets.UBANTU }}
