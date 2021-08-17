@@ -39,6 +39,7 @@ jobs:
         uses: AEnterprise/rsync-deploy@v1.0
         env:
           FOLDER: dist
+          ARGS: "-e -c -r --delete"
           DEPLOY_KEY: ${{ secrets.UBANTU }}
           SERVER_PORT: '22'
           SERVER_IP: ${{ secrets.SSH_HOST }}
