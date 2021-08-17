@@ -41,7 +41,7 @@ jobs:
           server: ${{ secrets.SSH_HOST }}
           username: ${{ secrets.SSH_USERNAME }}
           password: ${{ secrets.SSH_PASSWORD }}
-          port: 21
+          port: 22
           local-dir: ./dist/
           server-dir: /project/p3/
 
@@ -54,8 +54,8 @@ jobs:
         uses: appleboy/ssh-action@master
         with:
           host: ${{ secrets.SSH_HOST }}  # 下面三个配置与上一步类似
-          username: ${{ secrets.USERNAME }}
-          key: ${{ secrets.UBANTU }}
+          username: ${{ secrets.SSH_USERNAME }}
+          key: ${{ secrets.SSH_UBANTU }}
           # 重启的脚本，根据自身情况做相应改动，一般要做的是migrate数据库以及重启服务器
           script: |
             cd /project/p3/
