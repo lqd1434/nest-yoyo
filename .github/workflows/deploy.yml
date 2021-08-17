@@ -38,12 +38,12 @@ jobs:
       - name: deploy
         uses: fangbinwei/aliyun-oss-website-action@v1
         with:
-          folder: dist
-          deploy_key: ${{ secrets.UBANTU }}
-          server_port: '22'
-          server_ip: ${{ secrets.SSH_HOST }}
-          username: ${{ secrets.USERNAME }}
-          server_destination: /project/p3/
+          FOLDER: dist
+          DEPLOY_KEY: ${{ secrets.UBANTU }}
+          SERVER_PORT: '22'
+          SERVER_IP: ${{ secrets.SSH_HOST }}
+          USERNAME: ${{ secrets.USERNAME }}
+          SERVER_DESTINATION: /project/p3/
 
 #          accessKeyId: ${{ secrets.ACCESSKEYID }}
 #          accessKeySecret: ${{ secrets.ACCESSKEYSECRET }}
