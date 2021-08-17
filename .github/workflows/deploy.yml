@@ -36,14 +36,15 @@ jobs:
           yarn build
 
       - name: deploy
-        uses: SamKirkland/FTP-Deploy-Action@4.1.0
+        uses: easingthemes/ssh-deploy@main
         with:
-          server: ${{ secrets.SSH_HOST }}
-          username: ${{ secrets.SSH_USERNAME }}
-          password: ${{ secrets.SSH_PASSWORD }}
-          port: 21
-          local-dir: ./dist/
-          server-dir: /project/p3/
+          SSH_PRIVATE_KEY: ${{ secrets.SSH_KEY }}
+          ARGS: "-rltgoDzvO"
+          SOURCE: "dist/"
+          REMOTE_HOST: ${{ secrets.SSH_HOST }}
+          REMOTE_USER: ${{ secrets.SSH_USERNAME }}
+          TARGET: /project/p3/
+#          EXCLUDE: "/dist/, /node_modules/"
 
 #          accessKeyId: ${{ secrets.ACCESSKEYID }}
 #          accessKeySecret: ${{ secrets.ACCESSKEYSECRET }}
