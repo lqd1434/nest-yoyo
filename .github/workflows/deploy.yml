@@ -41,8 +41,8 @@ jobs:
           SSH_PRIVATE_KEY: ${{ secrets.SSH_KEY }}
           ARGS: "-avzr --delete"
           SOURCE: "dist/"
-          REMOTE_HOST: "47.103.211.10"
-          REMOTE_USER: "root"
+          REMOTE_HOST: ${{ secrets.SSH_HOST }}
+          REMOTE_USER: ${{ secrets.SSH_USERNAME }}
           TARGET: /project/p3/
 #          EXCLUDE: "/dist/, /node_modules/"
 
