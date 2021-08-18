@@ -59,7 +59,8 @@ jobs:
           key: ${{ secrets.SSH_KEY }}
           # 重启的脚本，根据自身情况做相应改动，一般要做的是migrate数据库以及重启服务器
           script: |
-            cd /project/p3/
-            pm2 reload main.js
+            cd /project/p3/dist
+            pm2 stop main.js
+            pm2 start app.js -i max
 
 
