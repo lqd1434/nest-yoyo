@@ -41,8 +41,8 @@ jobs:
           SSH_PRIVATE_KEY: ${{ secrets.SSH_KEY }}
           ARGS: "-avzr --delete"
           SOURCE: ""
-          REMOTE_HOST: "47.103.211.10"
-          REMOTE_USER: "root"
+          REMOTE_HOST: ${{ secrets.SSH_HOST }}
+          REMOTE_USER: ${{ secrets.USERNAME }}
           TARGET: /project/p3/
 #          EXCLUDE: "/dist/, /node_modules/"
 
@@ -60,7 +60,7 @@ jobs:
           # 重启的脚本，根据自身情况做相应改动，一般要做的是migrate数据库以及重启服务器
           script: |
             cd /project/p3/dist
-            pm2 stop main.js
-            pm2 start app.js -i max
+            pm2 stop all
+            pm2 start main.js -i max
 
 
