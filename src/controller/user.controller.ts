@@ -21,30 +21,30 @@ export class UserController {
 		return await this.userService.updateUser(req.body)
 	}
 
+	@Post('password')
+	@UseGuards(JwtAuthGuard)
+	async changePaw(@Req() req: Request) {
+		return await this.userService.changePassword(req.body)
+	}
+
 	@Get('icon')
 	@UseGuards(JwtAuthGuard)
 	async getUserIcon(@Req() req: Request, @Res() res: Response) {
-		// res.sendFile('/project/p3/static/images/' + req.query.icon)
-		res.sendFile('/Users/lqd/WebstormProjects/nest-yoyo/src/static/images/' + req.query.icon)
+		res.sendFile(req.query.icon.toString())
 	}
 
 	@Post('upload')
 	@UseGuards(JwtAuthGuard)
 	@UseInterceptors(FileInterceptor('file'))
 	async upload(@UploadedFile() file, @Req() req: Request) {
-		if (!fs.existsSync('./src/static/images/' + file.originalname)) {
-			// fs.writeFileSync('/project/p3/static/images/' + file.originalname, file.buffer)
-			fs.writeFileSync('./src/static/images/' + file.originalname, file.buffer)
+		const preUrl = ' /project/static/icons/'
+		const fileExtension = file.originalname.split('.').pop()
+		const filePath = preUrl + req.query.id + fileExtension
+		if (!fs.existsSync(filePath)) {
+			fs.writeFileSync(filePath, file.buffer)
 		}
-		console.log('已存在')
-
+		console.log('上传的文件已存在' + req.query.id)
 		const id = req.query.id as string
-		return await this.userService.updateUserIcon(id, file.originalname)
-	}
-
-	@Post('password')
-	@UseGuards(JwtAuthGuard)
-	async changePaw(@Req() req: Request) {
-		return await this.userService.changePassword(req.body)
+		return await this.userService.updateUserIcon(id, filePath)
 	}
 }
