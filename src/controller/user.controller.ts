@@ -41,10 +41,7 @@ export class UserController {
 		const preUrl = '/project/static/icons/'
 		const fileExtension = file.originalname.split('.').pop()
 		const filePath = preUrl + req.query.id + '.' + fileExtension
-		if (!fs.existsSync(filePath)) {
-			fs.writeFileSync(filePath, file.buffer)
-		}
-		console.log('上传的文件已存在' + req.query.id)
+		fs.writeFileSync(filePath, file.buffer)
 		const id = req.query.id as string
 		return await this.userService.updateUserIcon(id, req.query.id + '.' + fileExtension)
 	}
