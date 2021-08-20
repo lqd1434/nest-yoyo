@@ -45,6 +45,6 @@ export class UserController {
 		}
 		console.log('上传的文件已存在' + req.query.id)
 		const id = req.query.id as string
-		return await this.userService.updateUserIcon(id, filePath)
+		return await this.userService.updateUserIcon(id, req.query.id + fileExtension)
 	}
 }
