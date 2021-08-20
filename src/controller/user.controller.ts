@@ -37,6 +37,7 @@ export class UserController {
 	@UseGuards(JwtAuthGuard)
 	@UseInterceptors(FileInterceptor('file'))
 	async upload(@UploadedFile() file, @Req() req: Request) {
+		console.log(req.query.id)
 		const preUrl = ' /project/static/icons/'
 		const fileExtension = file.originalname.split('.').pop()
 		const filePath = preUrl + req.query.id + fileExtension

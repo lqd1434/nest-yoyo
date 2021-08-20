@@ -43,7 +43,6 @@ export class WebSocketAdapter {
 	//初始化连接
 	async handleConnection(@ConnectedSocket() client: Socket): Promise<string> {
 		const userId = client.handshake.query.userId as string
-		const userName = client.handshake.query.userName as string
 		client.emit('conn', '连接成功')
 		//redis存入在线用户,和其id,即他的独有房间
 		await this.redisService.set(userId, client.id)
@@ -51,7 +50,7 @@ export class WebSocketAdapter {
 		client.join(this.defaultRoom)
 		await this.getActiveGroupUser()
 
-		if (userId && userName) {
+		if (userId) {
 			// 用户独有消息房间 根据userId和username
 			client.join(userId)
 		}
