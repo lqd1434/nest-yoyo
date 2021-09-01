@@ -73,7 +73,10 @@ export class WebSocketAdapter {
 	}
 
 	@SubscribeMessage('addFriendToYourRoom')
-	async addFriendToYourRoom(@ConnectedSocket() client: Socket, @MessageBody() data: any): Promise<any> {
+	async addFriendToYourRoom(
+		@ConnectedSocket() client: Socket,
+		@MessageBody() data: any,
+	): Promise<any> {
 		if (data.userId && data.friendId) {
 			this.server.to(data.userId).emit('addFriendToYourRoom', '创建私聊房间成功')
 			console.log(data)
@@ -81,7 +84,10 @@ export class WebSocketAdapter {
 	}
 
 	@SubscribeMessage('message')
-	async friendMessage(@ConnectedSocket() client: Socket, @MessageBody() data: any): Promise<any> {
+	async friendMessage(
+		@ConnectedSocket() client: Socket,
+		@MessageBody() data: any,
+	): Promise<any> {
 		const { userId, friendId, content } = data
 		const message = {
 			from: userId,
@@ -92,6 +98,7 @@ export class WebSocketAdapter {
 		console.log(data)
 		if (userId && friendId) {
 			this.server.to(friendId).emit('message', content)
+			await this.chatService.creatChatList(userId, friendId, content)
 			client.emit('info', '发送成功')
 		}
 	}
