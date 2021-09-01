@@ -11,6 +11,7 @@ lerna-debug.log*
 
 # OS
 .DS_Store
+dist
 
 # Tests
 /coverage
