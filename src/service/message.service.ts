@@ -15,20 +15,21 @@ export class MessageService {
 		return await getConnection().createQueryBuilder().insert().into(Message).values([message]).execute()
 	}
 
+	async updateMessageState(messageId: number) {
+		return await getConnection()
+			.createQueryBuilder()
+			.update(Message)
+			.set({ read: true })
+			.where('id = :id', { id: messageId })
+			.execute()
+	}
+
 	async deleteMessage(id: number) {
 		await getConnection().createQueryBuilder().delete().from(Message).where('id = :id', { id: id }).execute()
 	}
 
-	/**
-	 *
-	 * @param count
-	 * @param lastId
-	 * @param from
-	 * @param to
-	 */
-
 	async getMessageLimit(count: number | string, lastId: number | string, from: number | string, to: number | string) {
-		return getRepository(Message)
+		const messageList = await getRepository(Message)
 			.createQueryBuilder('message')
 			.orderBy('message.time', 'ASC')
 			.where('message.from = :from AND message.to = :to', { from: from, to: to })
@@ -39,5 +40,10 @@ export class MessageService {
 			.skip(parseInt('' + lastId))
 			.take(parseInt('' + count))
 			.getMany()
+
+		for (let message of messageList) {
+			await this.updateMessageState(message.id)
+		}
+		return messageList
 	}
 }

@@ -14,6 +14,9 @@ export class Message extends BaseEntity {
 	@Column({ type: 'varchar', name: 'content' })
 	content: string
 
+	@Column({ type: 'boolean', name: 'read' })
+	read?: boolean
+
 	@CreateDateColumn({ type: 'timestamp', name: 'time' })
 	time?: string
 }
