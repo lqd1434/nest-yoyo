@@ -18,10 +18,19 @@ export class MessageService {
 	async deleteMessage(id: number) {
 		await getConnection().createQueryBuilder().delete().from(Message).where('id = :id', { id: id }).execute()
 	}
+
+	/**
+	 *
+	 * @param count
+	 * @param lastId
+	 * @param from
+	 * @param to
+	 */
+
 	async getMessageLimit(count: number | string, lastId: number | string, from: number | string, to: number | string) {
 		return getRepository(Message)
 			.createQueryBuilder('message')
-			.orderBy('message.time', 'DESC')
+			.orderBy('message.time', 'ASC')
 			.where('message.from = :from AND message.to = :to', { from: from, to: to })
 			.orWhere('message.from = :to AND message.to = :from', {
 				from: from,
