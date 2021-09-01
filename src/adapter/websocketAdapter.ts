@@ -86,7 +86,6 @@ export class WebSocketAdapter {
 		const message = {
 			from: userId,
 			to: friendId,
-			tag: parseInt(userId) + parseInt(friendId),
 			content: content,
 		} as Message
 		await this.MessageService.addMessage(message)

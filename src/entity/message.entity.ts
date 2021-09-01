@@ -11,9 +11,6 @@ export class Message extends BaseEntity {
 	@Column({ type: 'bigint', name: 'to' })
 	to: number
 
-	@Column({ type: 'bigint', name: 'tag' })
-	tag: number
-
 	@Column({ type: 'varchar', name: 'content' })
 	content: string
 
