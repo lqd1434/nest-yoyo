@@ -15,8 +15,8 @@ export class MessageController {
 			[`list|${count}`]: [
 				{
 					'id|+1': parseInt(lastId.toString()),
-					from: parseInt(from.toString()),
-					to: parseInt(to.toString()),
+					'from|1': [parseInt(from.toString()), parseInt(to.toString())],
+					'to|1': [parseInt(from.toString()), parseInt(to.toString())],
 					content: Random.csentence(Math.random() * 5, 5 + Math.random() * 5),
 					read: true,
 					time: Random.datetime(),
