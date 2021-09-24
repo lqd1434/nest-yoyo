@@ -11,14 +11,13 @@ export class MessageController {
 	@Get('limit')
 	async getMsg(@Req() req: Request): Promise<any> {
 		const { count, lastId, from, to } = req.query
-
 		const data = Mock.mock({
 			[`list|${count}`]: [
 				{
 					'id|+1': parseInt(lastId.toString()),
 					from: parseInt(from.toString()),
 					to: parseInt(to.toString()),
-					content: Random.csentence(3, 10),
+					content: Random.csentence(Math.random() * 5, 5 + Math.random() * 5),
 					read: true,
 					time: Random.datetime(),
 				},
