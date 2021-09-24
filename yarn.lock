@@ -988,6 +988,11 @@
   resolved "https://registry.nlark.com/@types/mime/download/@types/mime-1.3.2.tgz"
   integrity sha1-k+Jb+e51/g/YC1lLxP6w6GIRG1o=
 
+"@types/mockjs@^1.0.4":
+  version "1.0.4"
+  resolved "https://registry.npmjs.org/@types/mockjs/-/mockjs-1.0.4.tgz#e706951d5e33b4f0a4bb73b1f8b124e26f081de0"
+  integrity sha512-gK20xPqJhzMIitechVbvfnAk+oBIxVRnWrihJpRYHMI6UHCB/cvWgJa+dy6trRwQLE3AbtAJnXpm7pn6blG8sA==
+
 "@types/mongodb@^3.5.27":
   version "3.6.20"
   resolved "https://registry.nlark.com/@types/mongodb/download/@types/mongodb-3.6.20.tgz#b7c5c580644f6364002b649af1c06c3c0454e1d2"
@@ -2186,6 +2191,11 @@ combined-stream@^1.0.6, combined-stream@^1.0.8, combined-stream@~1.0.6:
   integrity sha1-w9RaizT9cwYxoRCoolIGgrMdWn8=
   dependencies:
     delayed-stream "~1.0.0"
+
+commander@*:
+  version "8.2.0"
+  resolved "https://registry.npmjs.org/commander/-/commander-8.2.0.tgz#37fe2bde301d87d47a53adeff8b5915db1381ca8"
+  integrity sha512-LLKxDvHeL91/8MIyTAD5BFMNtoIwztGPMiM/7Bl8rIPmHCZXRxmSWr91h57dpOpnQ6jIUqEWdXE/uBYMfiVZDA==
 
 commander@4.1.1:
   version "4.1.1"
@@ -5295,6 +5305,13 @@ mkdirp@^0.5.1:
   integrity sha1-2Rzv1i0UNsoPQWIOJRKI1CAJne8=
   dependencies:
     minimist "^1.2.5"
+
+mockjs@^1.1.0:
+  version "1.1.0"
+  resolved "https://registry.npmjs.org/mockjs/-/mockjs-1.1.0.tgz#e6a0c378e91906dbaff20911cc0273b3c7d75b06"
+  integrity sha512-eQsKcWzIaZzEZ07NuEyO4Nw65g0hdWAyurVol1IPl1gahRwY+svqzfgfey8U8dahLwG44d6/RwEzuK52rSa/JQ==
+  dependencies:
+    commander "*"
 
 moment-timezone@^0.5.x:
   version "0.5.33"
