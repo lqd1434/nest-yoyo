@@ -1,7 +1,7 @@
 import { Controller, Get, Req } from '@nestjs/common'
 import { MessageService } from '../service/message.service'
 import { Request } from 'express'
-import Mock from 'mockjs'
+const Mock = require('mockjs')
 
 @Controller('msg')
 export class MessageController {
@@ -20,6 +20,7 @@ export class MessageController {
 
 	@Get('mock')
 	async mock(@Req() req: Request): Promise<any> {
+		console.log(Mock)
 		const Random = Mock.Random
 		const data = Mock.mock({
 			'list|20': [
