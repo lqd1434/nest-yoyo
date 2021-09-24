@@ -18,7 +18,7 @@ export class MessageController {
 					'id|+1': parseInt(lastId.toString()),
 					from: parseInt(from.toString()),
 					to: parseInt(to.toString()),
-					content: Random.cparagraph(1),
+					content: Random.csentence(3, 10),
 					read: true,
 					time: Random.datetime(),
 				},
